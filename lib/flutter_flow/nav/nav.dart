@@ -111,6 +111,48 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => FotosPTWidget(
                 itpt: params.getParam('itpt', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'Pedidos',
+              path: 'pedidos',
+              builder: (context, params) => PedidosWidget(
+                filtro: params.getParam('filtro', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'Pedido',
+              path: 'pedido',
+              builder: (context, params) => PedidoWidget(
+                pedido: params.getParam('pedido', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'NuevoPedido',
+              path: 'nuevoPedido',
+              builder: (context, params) => NuevoPedidoWidget(
+                parte: params.getParam('parte', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'RecibirPedido',
+              path: 'recibirPedido',
+              builder: (context, params) => RecibirPedidoWidget(
+                parte: params.getParam('parte', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'CargarFotoAC',
+              path: 'cargarFotoAC',
+              builder: (context, params) => CargarFotoACWidget(
+                parte: params.getParam('parte', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'Albaranes',
+              path: 'albaranes',
+              builder: (context, params) => AlbaranesWidget(
+                filtro: params.getParam('filtro', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

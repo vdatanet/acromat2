@@ -285,6 +285,84 @@ class PTCargaSimpleDeFotosCall {
 
 /// End Cargar Group Code
 
+/// Start Pcs Group Code
+
+class PcsGroup {
+  static String baseUrl = 'https://acromat.azurewebsites.net/pcs';
+  static Map<String, String> headers = {};
+  static PcsCall pcsCall = PcsCall();
+}
+
+class PcsCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? filtro = '',
+    String? empleado = '',
+    int? skip,
+    int? take,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Pcs',
+      apiUrl: '${PcsGroup.baseUrl}/${filtro}',
+      callType: ApiCallType.GET,
+      headers: {
+        ...PcsGroup.headers,
+        'Authorization': 'Bearer ${jwt}',
+      },
+      params: {
+        'Empleado': empleado,
+        'Skip': skip,
+        'Take': take,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+/// End Pcs Group Code
+
+/// Start Acs Group Code
+
+class AcsGroup {
+  static String baseUrl = 'https://acromat.azurewebsites.net/acs';
+  static Map<String, String> headers = {};
+  static AcsCall acsCall = AcsCall();
+}
+
+class AcsCall {
+  Future<ApiCallResponse> call({
+    String? jwt = '',
+    String? filtro = '',
+    String? empleado = '',
+    int? skip,
+    int? take,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Acs',
+      apiUrl: '${AcsGroup.baseUrl}/${filtro}',
+      callType: ApiCallType.GET,
+      headers: {
+        ...AcsGroup.headers,
+        'Authorization': 'Bearer ${jwt}',
+      },
+      params: {
+        'Empleado': empleado,
+        'Skip': skip,
+        'Take': take,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+/// End Acs Group Code
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

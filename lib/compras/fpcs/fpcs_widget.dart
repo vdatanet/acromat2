@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
@@ -43,9 +44,26 @@ class _FpcsWidgetState extends State<FpcsWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
+        drawer: Drawer(
+          elevation: 16.0,
+        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.menu,
+              color: FlutterFlowTheme.of(context).primaryBtnText,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              scaffoldKey.currentState!.openDrawer();
+            },
+          ),
           title: Text(
             'Pedidos de Compra',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -111,21 +129,41 @@ class _FpcsWidgetState extends State<FpcsWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    ListTile(
-                                      title: Text(
-                                        getJsonField(
-                                          itemsItem,
-                                          r'''$.titulo''',
-                                        ).toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineSmall,
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'Pedidos',
+                                          queryParams: {
+                                            'filtro': serializeParam(
+                                              getJsonField(
+                                                itemsItem,
+                                                r'''$.titulo''',
+                                              ).toString(),
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      },
+                                      child: ListTile(
+                                        title: Text(
+                                          getJsonField(
+                                            itemsItem,
+                                            r'''$.titulo''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall,
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF303030),
+                                          size: 20.0,
+                                        ),
+                                        dense: false,
                                       ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF303030),
-                                        size: 20.0,
-                                      ),
-                                      dense: false,
                                     ),
                                     Divider(
                                       height: 0.0,

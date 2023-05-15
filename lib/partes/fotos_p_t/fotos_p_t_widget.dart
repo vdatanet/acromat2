@@ -186,24 +186,11 @@ class _FotosPTWidgetState extends State<FotosPTWidget> {
                   idpt: widget.itpt,
                   file: _model.uploadedLocalFile2,
                 );
-                if ((_model.apiResultjiz?.succeeded ?? true)) {
+                if (!(_model.apiResultjiz?.succeeded ?? true)) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        (_model.apiResultjiz?.jsonBody ?? '').toString(),
-                        style: TextStyle(
-                          color: FlutterFlowTheme.of(context).primaryText,
-                        ),
-                      ),
-                      duration: Duration(milliseconds: 4000),
-                      backgroundColor: FlutterFlowTheme.of(context).secondary,
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        (_model.apiResultjiz?.statusCode ?? 200).toString(),
+                        'Error en la carga',
                         style: TextStyle(
                           color: FlutterFlowTheme.of(context).primaryText,
                         ),

@@ -111,21 +111,41 @@ class _FacsWidgetState extends State<FacsWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    ListTile(
-                                      title: Text(
-                                        getJsonField(
-                                          itemsItem,
-                                          r'''$.titulo''',
-                                        ).toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineSmall,
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'Albaranes',
+                                          queryParams: {
+                                            'filtro': serializeParam(
+                                              getJsonField(
+                                                itemsItem,
+                                                r'''$.titulo''',
+                                              ).toString(),
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      },
+                                      child: ListTile(
+                                        title: Text(
+                                          getJsonField(
+                                            itemsItem,
+                                            r'''$.titulo''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall,
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF303030),
+                                          size: 20.0,
+                                        ),
+                                        dense: false,
                                       ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF303030),
-                                        size: 20.0,
-                                      ),
-                                      dense: false,
                                     ),
                                     Divider(
                                       height: 0.0,
